@@ -27,6 +27,13 @@ def add_word(word, meaning):
     main_directory = os.path.join(os.path.expanduser("~"),  "wordlist")
     print main_directory
 
+    # check if the directory exist
+    main_directory = os.path.expanduser("~") + "/wordlist/"
+    print "main directory: ", main_directory
+
+    if not os.path.exists(main_directory):
+        os.makedirs(main_directory)
+
     if os.path.exists(main_directory):
         filename = os.path.join(main_directory, file_to_store())
         print filename
@@ -54,10 +61,6 @@ def display_words():
 
 def file_to_store():
     # save maintaing unique file for each day
-    # check if the directory exist
-    main_directory = os.path.expanduser("~") + "/wordlist"
-    if not os.path.isdir(main_directory):
-        os.makedirs(main_directory)
     # grant a unique file name for current date
     filename = "wl" + time.strftime("%m%d%y")
     return filename
